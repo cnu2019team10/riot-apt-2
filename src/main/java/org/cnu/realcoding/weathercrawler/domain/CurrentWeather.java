@@ -4,8 +4,18 @@ import lombok.Data;
 @Data
 public class CurrentWeather {
     private String name;
-//    private String id;
-    private long summonerLevel;
+////    private String _id;
+    private String id;
+
+    public String getName() {
+        return name;
+    }
+
+    public String getId() {
+        return id;
+    }
+//    private long summonerLevel;
+//    private int profileIcondId;
 //    private Main main;
 //    private Wind wind;
 //    private Others sys;
@@ -29,4 +39,21 @@ public class CurrentWeather {
 //        private long sunrise;
 //        private long sunset;
 //    }
+//
+//    @Data
+//    public static class Others {
+//        private String summonerName;
+//    }
+    //    private String quereType;
+//    private String summonerName;
+//    private Boolean hotStreak;
+//    private int wins;
+//    private int losses;
+//    private String rank;
+//    private String leagueId;
+//    private Boolean inactive;
+//    private Boolean firstBlood;
+//    private String tier;
+//    private String summonerId;
+//    private int leaguePoints;
 }

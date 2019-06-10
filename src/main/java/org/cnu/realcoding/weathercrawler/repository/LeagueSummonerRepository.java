@@ -7,12 +7,12 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class CurrentWeatherRepository {
+public class LeagueSummonerRepository {
     @Autowired
     private MongoTemplate mongoTemplate;
 
     public void insertCurrentWeather(CurrentWeather currentWeather) {
-//        mongoTemplate.insert(currentWeather);
+        mongoTemplate.insert(currentWeather);
     } // 얘가 저장해주는 역할인듯.
 
 //    public void insertLeagueSummoner(LeagueSummoner leagueSummoner) {

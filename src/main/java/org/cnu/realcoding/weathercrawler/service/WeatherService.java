@@ -2,7 +2,9 @@ package org.cnu.realcoding.weathercrawler.service;
 
 import org.cnu.realcoding.weathercrawler.api.OpenWeatherMapApiClient;
 import org.cnu.realcoding.weathercrawler.domain.CurrentWeather;
+import org.cnu.realcoding.weathercrawler.domain.LeagueSummoner;
 import org.cnu.realcoding.weathercrawler.repository.CurrentWeatherRepository;
+import org.cnu.realcoding.weathercrawler.repository.LeagueSummonerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,9 @@ public class WeatherService {
 
     @Autowired
     private CurrentWeatherRepository currentWeatherRepository;
+
+    @Autowired
+    private LeagueSummonerRepository leagueSummonerRepository;
 
     private LinkedList<String> queue = new LinkedList<>();
 
@@ -39,4 +44,18 @@ public class WeatherService {
         CurrentWeather currentWeather = openWeatherMapApiClient.getCurrentWeather(target);
         currentWeatherRepository.insertCurrentWeather(currentWeather);
     }
+
+//    @Scheduled(initialDelay = 5000L, fixedDelay = 2000L)
+//    public void getLeagueSummonerPeriodically() {
+//        if (queue.isEmpty()) {
+//            queue.addAll(this.getAvailableCityNames());
+//
+//        }
+//        String target = queue.pop();
+//        queue.add(target);
+//
+//        LeagueSummoner leagueSummoner= openWeatherMapApiClient.getLeagueSummoner(target);
+//        leagueSummonerRepository.insertLeagueSummoner(leagueSummoner);
+//    }
+
 }
