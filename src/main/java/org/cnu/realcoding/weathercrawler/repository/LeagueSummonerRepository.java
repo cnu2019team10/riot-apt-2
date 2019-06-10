@@ -11,11 +11,11 @@ public class LeagueSummonerRepository {
     @Autowired
     private MongoTemplate mongoTemplate;
 
-    public void insertCurrentWeather(CurrentWeather currentWeather) {
-        mongoTemplate.insert(currentWeather);
-    } // 얘가 저장해주는 역할인듯.
+//    public void insertCurrentWeather(CurrentWeather currentWeather) {
+//        mongoTemplate.insert(currentWeather);
+//    } // 얘가 저장해주는 역할인듯.
 
-//    public void insertLeagueSummoner(LeagueSummoner leagueSummoner) {
-//        mongoTemplate.insert(leagueSummoner);
-//    } //
+    public void insertLeagueSummoner(LeagueSummoner leagueSummoner) {
+        mongoTemplate.insert(leagueSummoner);
+    } //
 }

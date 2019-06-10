@@ -47,18 +47,18 @@ public class WeatherService {
 //        currentWeatherRepository.insertCurrentWeather(currentWeather);
 //    }
 
-//    @Scheduled(initialDelay = 5000L, fixedDelay = 2000L)
-//    public void getLeagueSummonerPeriodically() {
-//        if (queue.isEmpty()) {
-//            queue.addAll(this.getAvailableCityNames());
-//
-//        }
-//        String target = queue.pop();
-//        queue.add(target);
-//
-//        LeagueSummoner leagueSummoner= openWeatherMapApiClient.getLeagueSummoner(target);
-//        leagueSummonerRepository.insertLeagueSummoner(leagueSummoner);
-//    }
+    @Scheduled(initialDelay = 5000L, fixedDelay = 2000L)
+    public void getLeagueSummonerPeriodically() {
+        if (queue.isEmpty()) {
+            queue.addAll(this.getAvailableCityNames());
+
+        }
+        String target = queue.pop();
+        queue.add(target);
+
+        LeagueSummoner leagueSummoner= openWeatherMapApiClient.getLeagueSummoner(target);
+        leagueSummonerRepository.insertLeagueSummoner(leagueSummoner);
+    }
 
 //    @Scheduled(initialDelay = 5000L, fixedDelay = 2000L)
 //    public void getCurrentWeatherPeriodically() {
@@ -73,16 +73,16 @@ public class WeatherService {
 //        currentWeatherRepository.insertCurrentWeather(currentArrayList);
 //    }
 
-    @Scheduled(initialDelay = 5000L, fixedDelay = 2000L)
-    public void getCustomWeatherPeriodically() {
-        if (queue.isEmpty()) {
-            queue.addAll(this.getAvailableCityNames());
-
-        }
-        String target = queue.pop();
-        queue.add(target);
-
-        CustomWeather customWeather = openWeatherMapApiClient.getCustomWeather(target);
-        currentWeatherRepository.insertCustomWeather(customWeather);
-    }
+//    @Scheduled(initialDelay = 5000L, fixedDelay = 2000L)
+//    public void getCustomWeatherPeriodically() {
+//        if (queue.isEmpty()) {
+//            queue.addAll(this.getAvailableCityNames());
+//
+//        }
+//        String target = queue.pop();
+//        queue.add(target);
+//
+//        CustomWeather customWeather = openWeatherMapApiClient.getCustomWeather(target);
+//        currentWeatherRepository.insertCustomWeather(customWeather);
+//    }
 }

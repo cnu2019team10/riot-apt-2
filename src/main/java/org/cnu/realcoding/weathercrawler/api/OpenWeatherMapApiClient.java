@@ -14,18 +14,15 @@ public class OpenWeatherMapApiClient {
     @Autowired
     private RestTemplate restTemplate;
 
-//    private String requestUrl = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/{summonerName}?api_key={appKey}";
-    private String requestUrl = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/Hide on bush?api_key=RGAPI-a9a3f44a-55c0-43ff-ab2a-b2005cf6d784";
+    private String requestUrl = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/{summonerName}?api_key={appKey}";
+//    private String requestUrl = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/Hide on bush?api_key=RGAPI-a9a3f44a-55c0-43ff-ab2a-b2005cf6d784";
 
-    //    private String requestUrl2 = "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/{summonerName}?api_key={appKey}";
-    private String requestUrl2 = "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/VGNbrFRgYrDGUG9N45hPrWFIPPJrw9wOLABkBb9P_3r3xA?api_key=RGAPI-a9a3f44a-55c0-43ff-ab2a-b2005cf6d784";
-    private ArrayList arrayList;
+        private String requestUrl2 = "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/{summonerName}?api_key={appKey}";
+//    private String requestUrl2 = "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/VGNbrFRgYrDGUG9N45hPrWFIPPJrw9wOLABkBb9P_3r3xA?api_key=RGAPI-a9a3f44a-55c0-43ff-ab2a-b2005cf6d784";
 
-    private LeagueSummoner leagueSummoner;
-
-
+    public LeagueSummoner getLeagueSummoner(String summonerName) {
 //    public CurrentWeather getCurrentWeather(String summonerName) {
-    public CustomWeather getCustomWeather(String summonerName) {
+//    public CustomWeather getCustomWeather(String summonerName) {
 //    public CustomArrayList getCurrentWeather(String summonerName) {
 //        System.out.println(restTemplate.exchange(requestUrl, HttpMethod.GET, null, CurrentWeather.class, summonerName, "RGAPI-a9a3f44a-55c0-43ff-ab2a-b2005cf6d784").getBody().getName());
 //        System.out.println(restTemplate.exchange(requestUrl, HttpMethod.GET, null, CurrentWeather.class, summonerName, "RGAPI-a9a3f44a-55c0-43ff-ab2a-b2005cf6d784").getBody().getId());
@@ -97,8 +94,30 @@ public class OpenWeatherMapApiClient {
 //        arraylist.get(0);
 
 //        System.out.println(restTemplate.exchange(requestUrl2, HttpMethod.GET, null, LeagueSummoner.class));
+//        CustomWeather customWeather = restTemplate.exchange(requestUrl, HttpMethod.GET, null, CustomWeather.class, summonerName, "RGAPI-a9a3f44a-55c0-43ff-ab2a-b2005cf6d784").getBody();
+//        System.out.println(restTemplate.exchange(requestUrl2, HttpMethod.GET, null, CustomWeather.class).getBody());
+//        System.out.println(customWeather.getClass());
+        String cryptId = restTemplate.exchange(requestUrl, HttpMethod.GET, null, CurrentWeather.class, summonerName, "RGAPI-a9a3f44a-55c0-43ff-ab2a-b2005cf6d784").getBody().getId();
 
-        return restTemplate.exchange(requestUrl, HttpMethod.GET, null, CustomWeather.class, summonerName, "RGAPI-a9a3f44a-55c0-43ff-ab2a-b2005cf6d784").getBody();
+        LeagueSummoner leagueSummoner = new LeagueSummoner();
+//        CustomArrayList customArrayList = restTemplate.getForObject(requestUrl2,CustomArrayList.class);
+        CustomArrayList customArrayList = restTemplate.getForObject(requestUrl2,CustomArrayList.class,cryptId,"RGAPI-a9a3f44a-55c0-43ff-ab2a-b2005cf6d784");
+//        System.out.println(customArrayList.get(0));
+//        System.out.println(customArrayList.get(0).getClass());
+        LinkedHashMap linkedHashMap = (LinkedHashMap) customArrayList.get(0);
+//        System.out.println(linkedHashMap);
+//        System.out.println(linkedHashMap.get("leagueId").getClass());
+
+        leagueSummoner.setSummonerName((String) linkedHashMap.get("summonerName"));
+        leagueSummoner.setWins((Integer) linkedHashMap.get("wins"));
+        leagueSummoner.setLosses((Integer) linkedHashMap.get("losses"));
+        leagueSummoner.setLeaguePoints((Integer) linkedHashMap.get("leaguePoints"));
+        leagueSummoner.setRank((String) linkedHashMap.get("rank"));
+        leagueSummoner.setLeagueId((String) linkedHashMap.get("leagueId"));
+//        customWeather.setTier(linkedHashMap.get("tier"));
+
+
+        return leagueSummoner;
 //        return (CurrentWeather) restTemplate.exchange(requestUrl2, HttpMethod.GET, null, CustomArrayList.class, summonerName, "RGAPI-a9a3f44a-55c0-43ff-ab2a-b2005cf6d784").getBody().get(0);
 //        return restTemplate.exchange(requestUrl2, HttpMethod.GET, null, CustomArrayList.class).getBody();
     }

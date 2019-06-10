@@ -10,8 +10,9 @@ import java.util.stream.Collectors;
 @Service
 public class AvailableCityNameService {
     private String[] cityNames = {
-            "Hide on bush"
-//            "VGNbrFRgYrDGUG9N45hPrWFIPPJrw9wOLABkBb9P_3r3xA"
+            "Hide on bush",
+            "타 잔",
+            "SKT T1 Gumayusl"
     };
     public List<String> getAvailableCityNames() {
         List<String> collect = Arrays.stream(cityNames).collect(Collectors.toList());
