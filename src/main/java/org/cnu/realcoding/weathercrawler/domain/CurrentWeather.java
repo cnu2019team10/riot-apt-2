@@ -5,15 +5,15 @@ import lombok.Data;
 public class CurrentWeather {
     private String name;
 ////    private String _id;
-    private String id;
+//    private String id;
 
     public String getName() {
         return name;
     }
 
-    public String getId() {
-        return id;
-    }
+//    public String getId() {
+//        return id;
+//    }
 //    private long summonerLevel;
 //    private int profileIcondId;
 //    private Main main;

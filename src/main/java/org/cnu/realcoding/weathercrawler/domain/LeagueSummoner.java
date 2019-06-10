@@ -14,11 +14,15 @@ public class LeagueSummoner {
 //    private Boolean firstBlood;
 //    private String tier;
 //    private String summonerId;
-//    private int leaguePoints;
+    private int leaguePoints;
 
     @Data
     public static class Others {
         private String summonerName;
+    }
+
+    public int getLeaguePoints() {
+        return leaguePoints;
     }
 
 }
